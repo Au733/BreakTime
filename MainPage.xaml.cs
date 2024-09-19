@@ -1,12 +1,8 @@
-﻿using System.Timers;
-using Timer = System.Timers.Timer;
-
-namespace BreakTime;
+﻿namespace BreakTime;
 
 public partial class MainPage : ContentPage
 {
     private bool isRunning = false;
-    private System.Timers.Timer _timer;
     private int _remainingTime;
     private int _i;
     
@@ -21,8 +17,6 @@ public partial class MainPage : ContentPage
     {
         _remainingTime = minutes;
         lblDisplay.Text = minutes.ToString() + " Minutes Left";
-        _timer = new Timer(60000);
-        _timer.Start();
         isRunning = true;
         
         Dispatcher.StartTimer(TimeSpan.FromMinutes(1), () =>
@@ -35,7 +29,6 @@ public partial class MainPage : ContentPage
             }
             else
             {
-                _timer.Stop();
                 lblDisplay.Text = "Time is up!!!";
                 TimesUp();
             }
@@ -48,8 +41,7 @@ public partial class MainPage : ContentPage
 
     private void TimesUp()
     {
-        _timer = new Timer(60000);
-        _timer.Start();
+        
         _i = 0;
         isRunning = true;
         
@@ -75,7 +67,7 @@ public partial class MainPage : ContentPage
     private void BtnFive_OnClicked(object sender, EventArgs e)
     {
         
-        Countdown(1);
+        Countdown(5);
     }
 
     private void BtnTen_OnClicked(object sender, EventArgs e)
